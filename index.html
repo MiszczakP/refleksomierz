@@ -1,0 +1,46 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Lab</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, serif;
+        }
+
+        h1 {
+            color: #0B3954;
+        }
+
+	.green {
+		color:green;
+}
+.hidden {display:none }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1 id="main-header">Moja aplikacja</h1>
+    <p>To bêdzie gra. A oto co muszê zrobiæ:</p>
+    <ol>
+        <li class="boring">Nauczyæ siê HTML</li>
+        <li class="boring">Nauczyæ siê CSS</li>
+        <li>Nauczyæ siê JS</li>
+        <li id="super-important">Zaimplementowaæ</li>
+    </ol>
+	<input type="text" id="myTextField">
+<input type="checkbox" id="myCheckbox">
+<button type="button" onclick="readValues()">Odczytaj wartoœci</button>
+</div>
+<script>
+function readValues() {
+ const isChecked = document.getElementById('myCheckbox').checked;
+ if (isChecked) {
+ const text = document.getElementById('myTextField').value;
+ alert(text);
+ }
+ }
+</script>
+</body>
+</html>

@@ -1,7 +1,8 @@
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>JS Lab</title>
+    <meta charset="UTF-8"> 
+    <title>Refleksomierz</title>
+	
     <style>
         body {
             margin: 0;
@@ -16,23 +17,16 @@
 	.green {
 		color:green;
 }
-.hidden {display:none }
     </style>
 </head>
 <body>
 <div id="app">
-    <h1 id="main-header">Moja aplikacja</h1>
-    <p>To bêdzie gra. A oto co muszê zrobiæ:</p>
-    <ol>
-        <li class="boring">Nauczyæ siê HTML</li>
-        <li class="boring">Nauczyæ siê CSS</li>
-        <li>Nauczyæ siê JS</li>
-        <li id="super-important">Zaimplementowaæ</li>
-    </ol>
-	<input type="text" id="myTextField">
-<input type="checkbox" id="myCheckbox">
-<button type="button" onclick="readValues()">Odczytaj wartoœci</button>
+    
+	<center><h1  id="main-header">Refleksomierzacz </h1></center> 
+	<p>Witaj w grze, ktÃ³ra sprawdza TwÃ³j refleks. Czy podejmiesz wyzwanie i sprawdzisz swÃ³j refleks?
+	JeÅ¼eli tak, to kliknij w poniÅ¼szy przycisk STRAT. Powodzenia :) </p>
 </div>
+
 <script>
 function readValues() {
  const isChecked = document.getElementById('myCheckbox').checked;

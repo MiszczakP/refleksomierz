@@ -16,25 +16,116 @@
 
 	.green {
 		color:green;
-}
+	}
+	.red {
+          color: red;
+        }
+		
+		
+		
+	.button-CLICK {
+	background-color: red;
+	padding: 100px;
+	text-align: center;
+	font-size: 100px;
+	border: solid black;
+	margin: 8px 10px;
+}	
+
+	.button-GAME {
+	background-color: green;
+	padding: 100px;
+	text-align: center;
+	font-size: 100px;
+	border: solid black;
+	margin: 8px 10px;
+}	
+
+
     </style>
 </head>
 <body>
+<div>
 <div id="app">
     
 	<center><h1  id="main-header">Refleksomierzacz </h1></center> 
 	<p>Witaj w grze, która sprawdza Twój refleks. Czy podejmiesz wyzwanie i sprawdzisz swój refleks?
-	Jeżeli tak, to kliknij w poniższy przycisk STRAT. Powodzenia :) </p>
+	Jeżeli tak, to kliknij w poniższy przycisk START. Powodzenia :)	</p>
+	<p> Twoje zadanie polegać będzie na jak najszybszym kliknięciu w prostokątne pole, zaraz po zmianie jego koloru. </p>
+	<center> <button type="button" id="start-button" onclick="stopGame()">START</button> </center>
+
+</div>
+
+<div id="click">
+
+<center> <button type="button" id="interactive-button" class="button-CLICK" onclick="changeColor()"></button> </center></div>
+
+
+<div id="counter">
+ <p></p> </div>
+ 
+ <table id="stats">
+			<tr>
+				<th>Ostatni wynik:</th>
+				<td id="current">0</td>
+			</tr>
+			<tr>
+				<th>Najkrótszy czas reakcji:</th>
+				<td id="best">1000000</td>
+			</tr>
+			<tr>
+				<th>Najdłuższy czas reakcji:</th>
+				<td id="worst">0</td>
+			</tr>
+			<tr>
+				<th>Średni czas reakcji:</th>
+				<td id="mean">0</td>
+			</tr>
+			<tr>
+				<th>Liczba falstartów:</th>
+				<td id="falstart">0</td>
+			</tr>
+			<tr>
+				<th>Gra numer:</th>
+				<td id="game">0</td>
+			</tr>
+		</table>
 </div>
 
 <script>
-function readValues() {
- const isChecked = document.getElementById('myCheckbox').checked;
- if (isChecked) {
- const text = document.getElementById('myTextField').value;
- alert(text);
- }
- }
+
+
+	
+	function startGame() {
+		
+		document.getElementById("start-button").setAttribute('onclick', "stopGame()");
+		document.getElementById("start-button").innerText = "STOP";
+	
+	}
+	  
+	  function getRandomTime(min, max) {
+        let result = Math.floor( Math.random() * Math.floor(max)) + min;
+        result = result * 1000;
+        return result;
+		}
+		
+	function changeColor(){
+			document.querySelectorAll(".button-CLICK").forEach((e) => e.classList.toggle(".button-GAME"));
+		}
+		
+	
+	function stopGame() {
+	
+		document.getElementById("start-button").setAttribute('onclick', "startGame()");
+		document.getElementById("start-button").innerText = "START";
+
+	}
+	
+	
+	
+
+
+
 </script>
 </body>
 </html>

@@ -36,6 +36,7 @@
 	margin: 8px 10px;
 }	
 
+
 .hidden {display: none}
 
     </style>
@@ -55,38 +56,76 @@
 
 <div id="click">
 
-	<center> <button type="button" id="button-game" class="button-CLICK" onclick="Play()"></button> </center>
+	<center> <button type="button" id="button-game" class="button-CLICK" > </button> </center>
 
 </div>
  
- <div id="stat">
-
-	
-	<p>Najkrótszy czas reakcji:</p>
-	<p id="shortest-time"></p>
-	
-	<p>Najdłuższy czas reakcji:</p>
-	<p id="longest-time"></p>
-	
-	<p>Średni czas reakcji:</p>
-	<p id="average-time"></p>
+ <div>
+ <p>Statystyki:</p>
+		
+		<table id="statistic">
+			<tr>
+				<p> Ostatni czas reakcji [ms]:</p>
+				<p id="current">0</p>
+			</tr>
+			<tr>
+				<p> Najkrótszy czas reakcji [ms]:</p>
+				<p id="minT">0</p>
+			</tr>
+						<tr>
+				<p> Najdłuższy czas reakcji [ms]:</p>
+				<p id="maxT">0</p>
+			</tr>
+						
+		</table>
 	
 </div>
 
 <script>
 
 
+		let minT
+		let maxT
+		
 		let changeNumber = 1;
+		
 	function startGame() {
+	
 		
 		document.getElementById("button-start").setAttribute('onclick', "stopGame()");
 		document.getElementById("button-start").innerText = "STOP";
 		document.getElementById("button-start").className = "button-STOP";
 		document.getElementById("button-game").classList = "button-CLICK";
 
-		document.getElementById("button-game").setAttribute('onclick',"Play-game()");	
-		setTimeout(changeColor, (Math.floor(Math.random() * 80) + 1)*1000);
+		let randomDelay = (Math.floor(Math.random() * 10) + 1)*1000;	
+		setTimeout(changeColor, randomDelay);
+
+		const now = new Date();
+		const timestampInMilliseconds = now.getTime();
+		
+		
+		click.onclick = function () {
+		
 	
+			const now2 = new Date();
+			score = now2.getTime() - timestampInMilliseconds - randomDelay;
+			score = Math.round(score);
+			
+			if (minT > score || !minT) {
+			minT = score;
+		}
+		
+		if (maxT < score || !maxT) {
+			maxT = score;
+		}
+		
+		
+			let table = document.getElementById('statistic');							
+			document.getElementById("current").innerHTML = score.toString();
+			document.getElementById("minT").innerHTML = minT;
+			document.getElementById("maxT").innerHTML = maxT;
+	
+			
 		changeNumber++;
 			
 		if(changeNumber < 6){
@@ -97,25 +136,41 @@
 			changeNumber = 1;
 			
 		}
-	}
+		
+		}
 	
+	}
 	function changeColor(){
 		var randomColor = Math.floor(Math.random()*16777215).toString(16); //The number of colors from black to white = 16777216
 		document.getElementById("button-game").style.background =  "#" + randomColor;
-		document.getElementById("button-game").setAttribute('onclick', "Play()");
-		document.getElementById("button-game").style.background =  "#" + randomColor;
-		document.getElementById("button-game").setAttribute('onclick', "Play()");
-		document.getElementById("button-game").style.background =  "#" + randomColor;
-		document.getElementById("button-game").setAttribute('onclick', "Play()");
 		
-	
+		document.getElementById("button-game").style.background =  "#" + randomColor;
+		
+		document.getElementById("button-game").style.background =  "#" + randomColor;
 	}
+	
 	
 	function stopGame() {
 		document.getElementById("button-game").classList = "hidden";
-		document.getElementById("button-start").setAttribute('onclick', "startNewGame()");
+		document.getElementById("button-start").setAttribute('onclick', "startGame()");
 		document.getElementById("button-start").innerText = "START";
 		document.getElementById("button-start").className = "button-START";	
+		deleteValue();
+	}
+	
+	
+	function endGame(){
+		document.getElementById("button-game").style.background.removeAttribute;
+		document.getElementById("button-game").removeAttribute('onclick');
+
+	
+	}
+
+	function deleteValue(){
+		document.getElementById("current").innerHTML = 0;
+		document.getElementById("minT").innerHTML = 0;
+		document.getElementById("maxT").innerHTML = 0;
+	
 	}
 	
 	

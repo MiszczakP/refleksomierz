@@ -76,6 +76,11 @@
 				<p> Najdłuższy czas reakcji [ms]:</p>
 				<p id="maxT">0</p>
 			</tr>
+			<tr>
+				<p> Średni czas reakcji [ms]:</p>
+				<p id="average">0</p>
+			</tr>
+		
 						
 		</table>
 	
@@ -86,6 +91,8 @@
 
 		let minT
 		let maxT
+	
+		let average=0
 		
 		let changeNumber = 1;
 		
@@ -119,11 +126,13 @@
 			maxT = score;
 		}
 		
+		average = (average * (changeNumber - 1) + score) / changeNumber;
 		
 			let table = document.getElementById('statistic');							
 			document.getElementById("current").innerHTML = score.toString();
 			document.getElementById("minT").innerHTML = minT;
 			document.getElementById("maxT").innerHTML = maxT;
+			document.getElementById("average").innerHTML = average;
 	
 			
 		changeNumber++;
@@ -170,6 +179,8 @@
 		document.getElementById("current").innerHTML = 0;
 		document.getElementById("minT").innerHTML = 0;
 		document.getElementById("maxT").innerHTML = 0;
+		document.getElementById("average").innerHTML = 0;
+		
 	
 	}
 	
